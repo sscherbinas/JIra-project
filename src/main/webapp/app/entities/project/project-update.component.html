@@ -1,0 +1,60 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-project-heading">Create or edit a Project</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_projectName">Project Name</label>
+                    <input type="text" class="form-control" name="projectName" id="field_projectName"
+                           formControlName="projectName"/>
+                    <div *ngIf="editForm.get('projectName')!.invalid && (editForm.get('projectName')!.dirty || editForm.get('projectName')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('projectName')?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('projectName')?.errors?.maxlength">
+                        This field cannot be longer than 100 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_projectManager">Project Manager</label>
+                    <input type="text" class="form-control" name="projectManager" id="field_projectManager"
+                           formControlName="projectManager"/>
+                    <div *ngIf="editForm.get('projectManager')!.invalid && (editForm.get('projectManager')!.dirty || editForm.get('projectManager')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('projectManager')?.errors?.maxlength">
+                        This field cannot be longer than 100 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_teamSize">Team Size</label>
+                    <input type="number" class="form-control" name="teamSize" id="field_teamSize"
+                           formControlName="teamSize"/>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

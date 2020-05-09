@@ -1,0 +1,39 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.shcherbyna.jira"
+    },
+    "jhipsterVersion": "6.8.0",
+    "applicationType": "monolith",
+    "baseName": "jira",
+    "packageName": "com.shcherbyna.jira",
+    "packageFolder": "com/shcherbyna/jira",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "no",
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "NjBmMTdmNzRmNjFiYjJkMTBhYjRhNTc3NDA5OWRkYTVkYmExOWJhZTMxZGI2OWRjZjg0ZTllYWFkZGI1NmUxZDVmNTk3M2E4MTc2YjQyM2YwMTk2MTUyYzMyNzdlN2JjYTQyOGVjYzMwNTEzNjljNmI4MTg3MWNhNDk0NzUyNzI=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "lux",
+    "clientThemeVariant": "dark",
+    "creationTimestamp": 1588879988983,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "blueprints": []
+  }
+}

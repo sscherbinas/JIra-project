@@ -1,0 +1,40 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="sprint">
+            <h2><span>Sprint</span> {{ sprint.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Sprint Name</span></dt>
+                <dd>
+                    <span>{{ sprint.sprintName }}</span>
+                </dd>
+                <dt><span>Sprint Count</span></dt>
+                <dd>
+                    <span>{{ sprint.sprintCount }}</span>
+                </dd>
+                <dt><span>Project</span></dt>
+                <dd>
+                    <div *ngIf="sprint.project">
+                        <a [routerLink]="['/project', sprint.project?.id, 'view']">{{ sprint.project?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/sprint', sprint.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

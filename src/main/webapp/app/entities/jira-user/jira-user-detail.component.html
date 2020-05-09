@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="jiraUser">
+            <h2><span>Jira User</span> {{ jiraUser.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>User Name</span></dt>
+                <dd>
+                    <span>{{ jiraUser.userName }}</span>
+                </dd>
+                <dt><span>Job Title</span></dt>
+                <dd>
+                    <span>{{ jiraUser.jobTitle }}</span>
+                </dd>
+                <dt><span>Projects</span></dt>
+                <dd>
+                    <span *ngFor="let projects of jiraUser.projects; let last = last">
+                        <a [routerLink]="['/project', projects?.id, 'view']">{{ projects.id }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+                <dt><span>Organization</span></dt>
+                <dd>
+                    <div *ngIf="jiraUser.organization">
+                        <a [routerLink]="['/organization', jiraUser.organization?.id, 'view']">{{ jiraUser.organization?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/jira-user', jiraUser.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+entity Organization {
+	id Long
+    organizationName String required maxlength(100)
+}
+
+entity JiraUser {
+	id Long
+    userName String required maxlength(100)
+    password Password
+}
+
+entity Project {
+	id Long
+    projectName String required maxlength(100)
+	projectManager String maxlength(100)
+	teamSize Int
+}
+
+entity Sprint {
+	id Long
+    sprintName String required maxlength(100)
+    startDate Date
+    endDate Date
+}
+
+entity Story {
+	id Long
+    storyName String required maxlength(100)
+    createdBy String maxlength(100)
+	description String maxlength(1000)
+}
+
+entity TestCase {
+	id Long
+    testCaseName String required maxlength(100)
+    description String maxlength(100)
+}
+
+entity Defect {
+	id Long
+    defectName String required maxlength(100)
+	description String maxlength(100)
+}
+
+relationship ManyToMany {
+	JiraUser{projects} to Project{users}
+}
+
+relationship OneToMany {
+	Organization{users} to JiraUser{organization}
+    Project{sprints} to Sprint{project}
+    Sprint{stories} to Story{sprints}
+    Story{testcases} to TestCase{story}
+    Story{defects} to Defect{story}
+}
+
+filter Project, Sprint
+paginate Story, Defect with infinite-scroll
+service all with serviceImpl
+

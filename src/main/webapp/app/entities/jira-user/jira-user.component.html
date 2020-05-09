@@ -1,0 +1,75 @@
+<div>
+    <h2 id="page-heading">
+        <span>Jira Users</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-jira-user" [routerLink]="['/jira-user/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Jira User
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="jiraUsers?.length === 0">
+        <span>No jiraUsers found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="jiraUsers?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>User Name</span></th>
+                    <th scope="col" ><span>Job Title</span></th>
+                    <th scope="col" ><span>Projects</span></th>
+                    <th scope="col" ><span>Organization</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let jiraUser of jiraUsers ;trackBy: trackId">
+                    <td><a [routerLink]="['/jira-user', jiraUser.id, 'view']">{{ jiraUser.id }}</a></td>
+                    <td>{{ jiraUser.userName }}</td>
+                    <td>{{ jiraUser.jobTitle }}</td>
+                    <td>
+                        <span *ngFor="let projects of jiraUser.projects; let last = last">
+                            <a class="form-control-static" [routerLink]="['/project', projects?.id, 'view']">{{ projects.id }}</a>{{ last ? '' : ', ' }}
+                        </span>
+                    </td>
+                    <td>
+                        <div *ngIf="jiraUser.organization">
+                            <a [routerLink]="['/organization', jiraUser.organization?.id, 'view']" >{{ jiraUser.organization?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/jira-user', jiraUser.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/jira-user', jiraUser.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(jiraUser)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
